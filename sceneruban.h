@@ -7,10 +7,9 @@
 
 class SceneRuban : public QGraphicsScene
 {
+    Q_OBJECT
 public:
     SceneRuban(Ruban * ruban);
-
-    void setHauteur(int hauteur);
 
 private:
     Ruban * _ruban;
@@ -18,6 +17,9 @@ private:
     int _hauteur; // en pixels
 
     void createListePeriodeItems();
+
+public slots:
+    void setHauteur(int hauteur);
 };
 
 #endif // SCENERUBAN_H

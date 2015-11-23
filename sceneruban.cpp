@@ -14,7 +14,6 @@ void SceneRuban::setHauteur(int hauteur)
 {
     _hauteur = hauteur;
 
-
     // Recalculer les pos et tailles de tous les items
     foreach (QGraphicsItem* i, items()) {
         PeriodeTempsGraphicsItem * item = dynamic_cast<PeriodeTempsGraphicsItem *>(i);
@@ -22,7 +21,6 @@ void SceneRuban::setHauteur(int hauteur)
             PeriodeTemps * periodeTemps = item->periodeTemps();
             qreal yDebut = _ruban->debut().secsTo(periodeTemps->debut()) * _hauteur / _ruban->debut().secsTo(_ruban->fin());
             qreal yFin = _ruban->debut().secsTo(periodeTemps->fin()) * _hauteur / _ruban->debut().secsTo(_ruban->fin());
-            //rectItem->setRect(0, yDebut, 100, yFin-yDebut);
             item->setRect(QRectF(0, yDebut, 100, yFin-yDebut));
         }
     }

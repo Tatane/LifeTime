@@ -1,14 +1,17 @@
 #ifndef MYGRAPHICSVIEW_H
 #define MYGRAPHICSVIEW_H
 
+#include <QObject>
 #include <QGraphicsView>
 #include <QDateTime>
 
 class MyGraphicsView : public QGraphicsView
 {
+    Q_OBJECT
+
 public:
+
     MyGraphicsView(QWidget * parent);
-    void initiateItems();
 
     // QObject interface
 public:
@@ -18,15 +21,18 @@ public:
 protected:
     void scrollContentsBy(int dx, int dy);
 */
+
+signals:
+    void sceneHeightChanged(int hauteur);
+
 private:
     qreal previousScale, scale;
     QDateTime ribbonDebut, ribbonFin;
-
+    int previousSceneHeight;
 
 
 private slots:
     void scaleChanged(qreal scale);
-
 
 };
 

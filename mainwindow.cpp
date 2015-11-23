@@ -5,8 +5,6 @@
 #include <qscroller.h>
 #include <QPinchGesture>
 #include "mygraphicsview.h"
-#include "evenement.h"
-#include "evenementgraphicsitem.h"
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -25,10 +23,6 @@ MainWindow::MainWindow(QWidget *parent) :
     QScroller::grabGesture(ui->scrollArea, QScroller::LeftMouseButtonGesture); // Permet au ScrollArea de gérer les Touch et l'inertie.
 
     //********************************
-
-    Evenement * evenement1 = new Evenement(QDateTime(QDate(2015, 04, 01)), QDateTime(QDate(2015, 04, 30)));
-    EvenementGraphicsItem * graphicsItem1 = new EvenementGraphicsItem(evenement1);
-
 
     view = new MyGraphicsView(ui->centralWidget);
     view->setGeometry(10, 10, 200, 400);
@@ -54,6 +48,8 @@ MainWindow::MainWindow(QWidget *parent) :
 
     view->setScene(_sceneRuban);
     _sceneRuban->setHauteur(view->height());
+
+    connect(view, SIGNAL(sceneHeightChanged(int)), _sceneRuban, SLOT(setHauteur(int)));
 
 }
 

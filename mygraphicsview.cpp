@@ -2,7 +2,6 @@
 #include <QGestureEvent>
 
 #include <QGraphicsItem>
-#include <evenementgraphicsitem.h>
 #include <QDateTime>
 #include <QRectF>
 
@@ -35,6 +34,7 @@ bool MyGraphicsView::event(QEvent * e)
                 switch (pinchGesture->state()) {
                 case Qt::GestureStarted:
                     previousScale = scale;
+                    previousSceneHeight = scene()->height();
                     break;
                 case Qt::GestureUpdated:
                 case Qt::GestureFinished:
@@ -44,6 +44,9 @@ bool MyGraphicsView::event(QEvent * e)
                     scale = computedScale;
                     //update();
                     emit scaleChanged(scale);
+
+                    int hauteur = previousSceneHeight*scale;
+                    emit sceneHeightChanged(hauteur);
                 }
                     break;
                 default:
@@ -68,20 +71,7 @@ bool MyGraphicsView::event(QEvent * e)
     return QGraphicsView::event(e);
 }
 
-void MyGraphicsView::initiateItems()
-{
-    QList<QGraphicsItem*> listeItems = scene()->items();
-    foreach (QGraphicsItem* item, listeItems) {
-        EvenementGraphicsItem * rectItem = dynamic_cast<EvenementGraphicsItem *>(item);
-        if (rectItem != 0) {
-            Evenement * ev = rectItem->evenement();
-            qreal yDebut = ribbonDebut.secsTo(ev->debut()) * height() / ribbonDebut.secsTo(ribbonFin);
-            qreal yFin = ribbonDebut.secsTo(ev->fin()) * height() / ribbonDebut.secsTo(ribbonFin);
-            //rectItem->setRect(0, yDebut, 100, yFin-yDebut);
-            rectItem->setInitialRect(QRectF(0, yDebut, 100, yFin-yDebut));
-        }
-    }
-}
+
 
 /*
 void MyGraphicsView::scrollContentsBy(int dx, int dy)
@@ -103,3 +93,6 @@ void MyGraphicsView::scaleChanged(qreal scale)
         }
     }*/
 }
+
+
+
