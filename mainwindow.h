@@ -4,6 +4,12 @@
 #include <QMainWindow>
 
 #include "timeribbon.h"
+#include <QGraphicsScene>
+#include <QGraphicsRectItem>
+#include "mygraphicsview.h"
+
+#include "ruban.h"
+#include "sceneruban.h"
 
 namespace Ui {
 class MainWindow;
@@ -20,6 +26,14 @@ public:
 private:
     Ui::MainWindow *ui;
     TimeRibbon * timeRibbon;
+    QGraphicsScene * scene;
+
+    QGraphicsRectItem * graphicsRectItem1, * graphicsRectItem2;
+    MyGraphicsView * view;
+
+    Ruban * _ruban;
+    SceneRuban * _sceneRuban;
+
 };
 
 #endif // MAINWINDOW_H

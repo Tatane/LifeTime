@@ -15,10 +15,20 @@ TEMPLATE = app
 SOURCES += main.cpp\
         mainwindow.cpp \
     timeribbon.cpp \
-    periodewidget.cpp
+    mygraphicsview.cpp \
+    periodetemps.cpp \
+    periodetempsgraphicsitem.cpp \
+    periodetempsmois.cpp \
+    ruban.cpp \
+    sceneruban.cpp
 
 HEADERS  += mainwindow.h \
     timeribbon.h \
-    periodewidget.h
+    mygraphicsview.h \
+    periodetemps.h \
+    periodetempsgraphicsitem.h \
+    periodetempsmois.h \
+    ruban.h \
+    sceneruban.h
 
 FORMS    += mainwindow.ui
